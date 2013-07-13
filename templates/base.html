@@ -1,0 +1,95 @@
+{% load url from future %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Informasi gempa terkini Indonesia | gempa.org</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informasi gempa terkini Indonesia">
+    <meta name="author" content="Eka Putra - balitechy.com">
+    <link href="{{STATIC_URL}}css/bootstrap-spacelab.min.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+
+      #map {
+        height:480px;
+        width: 100%;
+        margin:-10px 0 10px;
+     }
+    </style>
+
+    <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+     <!--[if lte IE 8]>
+         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+     <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="{% url 'homepage' %}"><strong>gempa</strong>.org</a>
+          <ul class="nav">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Tentang <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tentang Gempa.org</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cara Kerja</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sumber Data</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Credits</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Informasi Penting <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Apa itu Gempa Bumi?</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Penyebab terjadinya Gempa Bumi</a></li>
+                <li role="presentation" class="divider"></li>
+                <li class="nav-header">Apa yang harus dilakukkan?</li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sebelum gempa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Saat gempa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Setelah gempa</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Video</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+    <hr>
+    <footer>
+      <p class="muted" style="text-align:center">
+      &copy; 2013 <a href="http://www.gempa.org" title="gempa.org">gempa.org</a> | <a href="https://github.com/ekaputra07">Fork me on GitHub</a> | powered by <a target="_blank" href="https://www.djangoproject.com/">Django</a> on <a href="https://developers.google.com/appengine/" target="_blank">Google Appengine</a></p>
+    </footer>
+    </div> <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
+

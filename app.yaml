@@ -1,0 +1,26 @@
+application: gempa-org
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'settings'
+
+builtins:
+- deferred: on
+
+libraries:
+- name: django
+  version: "1.3"
+
+handlers:
+- url: /static/
+  static_dir: static
+
+- url: /cron/update_db/
+  script: main.app
+  login: admin
+
+- url: /.*
+  script: main.app

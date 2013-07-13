@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+{% block meta_desc %}{% endblock %}
+
+{% block content %}
+<div class="row">
+{% block pagecontent %}{% endblock %}
+</div>
+
+<hr>
+
+<ul class="nav nav-tabs map-selector">
+  <li class="active"><a href="javascript:;" data-zoom="5" data-source="latest">Gempa terbaru</a></li>
+  <li><a href="javascript:;" data-zoom="5" data-source="latest60">60 Gempa terbaru</a></li>
+  <li class="pull-right  map-loading"><img src="{{STATIC_URL}}img/loading.gif"/></li>
+</ul>
+
+<div id="map"></div>
+<div class="well well-small">
+Data dan lokasi gempa yang tampil diatas adalah gempa yang tercatat dengan Magnitude diatas 5 SR (Skala Richter).
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdX1BWDGv3y6zEvdlXcnVbjUYRBieHE1k&sensor=false"></script>
+<script src="{{STATIC_URL}}js/gempa.js"></script>
+{% endblock %}

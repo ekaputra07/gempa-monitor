@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Informasi gempa terkini Indonesia | gempa.org</title>
+    <title>{% block title %}Informasi gempa terkini Indonesia{% endblock %} | gempa.org</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Informasi gempa terkini Indonesia">
+    <meta name="description" content="{% block meta_desc %}Informasi gempa terkini Indonesia{% endblock %}">
     <meta name="author" content="Eka Putra - balitechy.com">
     <link href="{{STATIC_URL}}css/bootstrap-spacelab.min.css" rel="stylesheet">
     <style>
@@ -53,7 +53,7 @@
             <li class="dropdown">
               <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Tentang <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tentang Gempa.org</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'page' 'tentang-gempa-org' %}">Tentang Gempa.org</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cara Kerja</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sumber Data</a></li>
                 <li role="presentation" class="divider"></li>

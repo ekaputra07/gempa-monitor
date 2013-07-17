@@ -14,6 +14,7 @@ class Gempa(db.Model):
     source = db.StringProperty()
     eqid = db.StringProperty()
     time = db.StringProperty()
+    wib_datetime = db.DateTimeProperty()
     lat = db.StringProperty()
     lon = db.StringProperty()
     magnitude = db.StringProperty()
@@ -49,5 +50,5 @@ class Gempa(db.Model):
         group = settings.EQ_LATEST60_SOURCE[0]
         if single:
             group = settings.EQ_LATEST_SOURCE[0]
-        results = Gempa.gql('WHERE group=:1', group)
+        results = Gempa.gql('WHERE group=:1 ORDER BY wib_datetime DESC', group)
         return results

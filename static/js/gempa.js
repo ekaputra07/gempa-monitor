@@ -56,7 +56,7 @@ var add_standard_marker = function(map_obj, data, animate){
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: data.magnitude+' SR, '+data.region+'<br>Kedalaman : '+data.depth+' KM.'
+      content: data.magnitude+' SR, '+data.region+'<br>Waktu: '+data.time+'<br>Kedalaman : '+data.depth+' KM.'
     });
 
     google.maps.event.addListener(marker, 'mouseover', function() {

@@ -1,4 +1,4 @@
 cron:
 - description: Update Earth Quake latest record
   url: /cron/update_db/
-  schedule: every 12 hours
+  schedule: every 1 hours

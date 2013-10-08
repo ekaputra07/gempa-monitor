@@ -24,6 +24,5 @@ Data dan lokasi gempa yang tampil diatas adalah gempa yang tercatat dengan Magni
 {% endblock %}
 
 {% block scripts %}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdX1BWDGv3y6zEvdlXcnVbjUYRBieHE1k&sensor=false"></script>
-<script src="{{STATIC_URL}}js/gempa.js"></script>
+{% include 'gmap-script.html' %}
 {% endblock %}

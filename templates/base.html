@@ -3,89 +3,96 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Informasi gempa terkini Indonesia{% endblock %} | gempa.org</title>
+    <title>{% block title %}Indonesia's Earth Information System{% endblock %} | gempa.org</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block meta_desc %}Informasi gempa terkini Indonesia{% endblock %}">
+    <meta name="description" content="{% block meta_desc %}Indonesia's Earth Quake Map and Visualization{% endblock %}">
     <meta name="author" content="Eka Putra - balitechy.com">
-    <link href="{{STATIC_URL}}css/bootstrap-spacelab.min.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
+    <link rel="shortcut icon" href="{{ STATIC_URL }}bootstrap/assets/ico/favicon.png">
 
-      #map {
-        height:480px;
-        width: 100%;
-        margin:-10px 0 10px;
-     }
-    </style>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ STATIC_URL }}bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
-    <link href="{{STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Custom styles for this template -->
+    <link href="{{ STATIC_URL }}css/magnific-popup.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/jquery.jscrollpane.css" rel="stylesheet">
+
+    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="{{ STATIC_URL }}bootstrap/assets/js/html5shiv.js"></script>
+      <script src="{{ STATIC_URL }}bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="{% url 'homepage' %}"><strong>gempa</strong>.org</a>
-          <ul class="nav">
-            <li><a href="{% url 'homepage' %}">Home</a></li>
+          <a class="navbar-brand" href="{% url 'homepage' %}"><strong>GEMPA.ORG</strong></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="#">Home</a></li> -->
+
             <li class="dropdown">
-              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Tentang <b class="caret"></b></a>
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Map Type <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'page' 'tentang-gempa-org' %}">Tentang Gempa.org</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cara Kerja</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sumber Data</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#scalemap">Quake Location</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#heatmap">Heat Map</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#about">About INA-EQINFO</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">How it works</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Data Source</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Credits</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Informasi Penting <b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Apa itu Gempa Bumi?</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Penyebab terjadinya Gempa Bumi</a></li>
-                <li role="presentation" class="divider"></li>
-                <li class="nav-header">Apa yang harus dilakukkan?</li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sebelum gempa</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Saat gempa</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Setelah gempa</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Video</a></li>
           </ul>
-        </div>
+        </div><!--/.nav-collapse -->
+    </div>
+
+    <div id="map"></div>
+
+    <div id="sidebar">
+      <div class="content">
+        <ul class="nav nav-pills list-tab">
+          <li class="active"><a href="javascript:;" data-target="eqs">Latest 60</a></li>
+          <li><a href="javascript:;" data-target="videos">Videos</a></li>
+          <li><a href="javascript:;" data-target="bmkg">BMKG News</a></li>
+        </ul>
+
+          <div class="list"></div>
       </div>
     </div>
 
-    <div class="container">
-    {% block content %}
-    {% endblock %}
-    <hr>
-    <footer>
+    <!--<footer>
       <p class="muted" style="text-align:center">
-      &copy; 2013 <a href="http://www.gempa.org" title="gempa.org">gempa.org</a> | <a href="https://github.com/gempa-org">Fork me on GitHub</a> | powered by <a target="_blank" href="https://www.djangoproject.com/">Django</a> on <a href="https://developers.google.com/appengine/" target="_blank">Google Appengine</a></p>
-    </footer>
-    </div> <!-- /container -->
+      &copy; 2013 <a href="/" title="INA-EQINFO"><strong>INA-</strong>EQINFO</a> Indonesia's Earth Quake Map and Visualization | powered by <a target="_blank" href="https://www.djangoproject.com/">Django</a> on <a href="https://developers.google.com/appengine/" target="_blank">Google Appengine</a></p>
+    </footer>-->
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
-    {% block scripts %}{% endblock %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}bootstrap/assets/js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=geometry,visualization&sensor=false"></script>
+    <script src="{{STATIC_URL}}js/underscore-min.js"></script>
+    <script src="{{STATIC_URL}}js/backbone-min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.magnific-popup.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.mousewheel.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.jscrollpane.min.js"></script>
+    <script src="{{STATIC_URL}}js/gempa.js"></script>
   </body>
 </html>
 

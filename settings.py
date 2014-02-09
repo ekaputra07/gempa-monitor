@@ -44,6 +44,14 @@ INSTALLED_APPS = (
     'gempa',
 )
 
+GOOGLE_API_KEY = 'AIzaSyCIoXv8cpQacS9U0Bo4QiUP45m2eH4tHKU'
+YOUTUBE_API_SERVICE_NAME = "youtube"
+YOUTUBE_API_VERSION = "v3"
+
 EQ_LATEST_SOURCE = ('LATEST', 'http://inatews.bmkg.go.id/rss/csveqslastest.txt',)
 EQ_LATEST60_SOURCE = ('LATEST60', 'http://inatews.bmkg.go.id/rss/csvlast60event.txt',)
 # GEMPA_GLOBAL_SOURCE = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week_age.kml'
+
+
+EQ_CACHE_KEY = 'eqs'
+VIDEOS_CACHE_KEY = 'eqvideos'

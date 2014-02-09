@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 
 from google.appengine.ext import db
+from google.appengine.api import memcache
 
 from gempa.models import Gempa
 
@@ -67,4 +68,7 @@ def update_latest_eq(group, source):
             # Add the new one
             if is_clear:
                 Gempa.bulk_add_new_records(eqs)
+
+            # reset the cache too
+            memcache.delete(settings.EQ_CACHE_KEY)
     return

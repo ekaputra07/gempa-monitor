@@ -1,9 +1,9 @@
 
-gempa.org
-=========
+Gempa Monitor
+=============
 
 Aplikasi web sederhana untuk memantau aktifitas gempa di Indonesia.
-This is source code of http://www.gempa.org.
+This is source code of http://gempa-org.appspot.com.
 
 Under development: Untuk sementara bisa diakses melalui http://gempa-org.appspot.com.
 

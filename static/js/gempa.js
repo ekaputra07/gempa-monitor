@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
             var that = this;
 
             google.maps.visualRefresh = true;
-            this.indo_latlng = new google.maps.LatLng(-1.337954,118.300781);
+            this.indo_latlng = new google.maps.LatLng(-1.337954,110.300781);
             var mapOptions = {
                 zoom: 5,
                 minZoom: 3,
@@ -219,7 +219,7 @@ jQuery(document).ready(function($){
 
                 marker2.setAnimation(google.maps.Animation.BOUNCE);
                 this.markers.push(marker2);
-            }  
+            }
         },
 
         clear_markers: function(){
@@ -348,7 +348,7 @@ jQuery(document).ready(function($){
         $(this).css('overflow', 'hidden');
     });
 
-    // Make sure start everithing after map data fetching success
+    // Make sure start everything after map data fetching success
     mapdata.fetch({
         success: function(col, resp){
             app = new MainRouter();

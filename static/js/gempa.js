@@ -97,7 +97,7 @@ jQuery(document).ready(function($){
                 zoom: 5,
                 minZoom: 3,
                 center: this.indo_latlng,
-                mapTypeId: google.maps.MapTypeId.HYBRID,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_CENTER,
                     style: google.maps.MapTypeControlStyle.DEFAULT

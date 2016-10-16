@@ -1,4 +1,8 @@
 cron:
 - description: Update Earth Quake latest record
   url: /cron/update_db/
-  schedule: every 6 hours
+  schedule: every 1 hours
+
+# - description: Check latest SMS alert from BMKG
+#   url: /cron/check_alert/
+#   schedule: every 1 minutes

@@ -71,7 +71,7 @@ def get_qvideos(request):
     """
     videos = []
     cached_videos = memcache.get(settings.VIDEOS_CACHE_KEY)
-    
+
     if cached_videos:
         videos = cached_videos
     else:
@@ -97,3 +97,9 @@ def get_qvideos(request):
 
     return HttpResponse(simplejson.dumps(videos),
                         content_type='application/json; charset=utf-8')
+
+def check_bmkg_alert(request):
+    """
+    Check alert from BMKG.
+    """
+    return HttpResponse("success")

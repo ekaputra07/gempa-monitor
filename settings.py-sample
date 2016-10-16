@@ -5,6 +5,7 @@ TEMPLATE_DEBUG = DEBUG
 
 TIME_ZONE = None
 LANGUAGE_CODE = 'en-US'
+ALLOWED_HOSTS = ['localhost', 'gempa-ord.appspot.com', 'gempa.balitechy.com']
 
 SITE_ID = 1
 USE_I18N = True
@@ -20,7 +21,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'jvwrlrbd02l%6ywwj66zv6_v5l&le+pdojl@(29qxo2u3e27y0'
+SECRET_KEY = '<DJANGO SECRET KEY>'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -44,7 +45,7 @@ INSTALLED_APPS = (
     'gempa',
 )
 
-GOOGLE_API_KEY = 'AIzaSyCIoXv8cpQacS9U0Bo4QiUP45m2eH4tHKU'
+GOOGLE_API_KEY = '<GOOGLE API KEY>'
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 

@@ -9,6 +9,7 @@ from google.appengine.api import memcache
 
 from gempa.models import Gempa
 from gempa.tasks import update_latest_eq
+from gempa.tasks import check_latest_sms_alert
 
 from apiclient.discovery import build
 
@@ -102,4 +103,5 @@ def check_bmkg_alert(request):
     """
     Check alert from BMKG.
     """
-    return HttpResponse("success")
+    result = deferred.defer(check_latest_sms_alert)
+    return HttpResponse("ok")

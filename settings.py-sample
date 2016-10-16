@@ -51,8 +51,12 @@ YOUTUBE_API_VERSION = "v3"
 
 EQ_LATEST_SOURCE = ('LATEST', 'http://inatews.bmkg.go.id/rss/csveqslastest.txt',)
 EQ_LATEST60_SOURCE = ('LATEST60', 'http://inatews.bmkg.go.id/rss/csvlast60event.txt',)
-# GEMPA_GLOBAL_SOURCE = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week_age.kml'
+SMS_ALERT_LIST_URL = 'http://inatews.bmkg.go.id/new/diseminasi_sms.php'
+SMS_ALERT_DETAIL_URL = 'http://inatews.bmkg.go.id/new/detail_sms.php?eventid=%s'
 
+PB_GEMPA_CHANNEL_TAG = 'gempa'
+PB_ACCESS_TOKEN = '<PUSH BULLET ACCESS TOKEN>'
+PB_PUSH_URL = 'https://api.pushbullet.com/v2/pushes'
 
 EQ_CACHE_KEY = 'eqs'
 VIDEOS_CACHE_KEY = 'eqvideos'

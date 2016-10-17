@@ -24,7 +24,7 @@ handlers:
 
 - url: /cron/check_alert/
   script: main.app
-  # login: admin
+  login: admin
 
 - url: /.*
   script: main.app

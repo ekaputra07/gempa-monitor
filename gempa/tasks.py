@@ -1,19 +1,16 @@
 import csv
 import urllib2
 import re
-import json
 from datetime import datetime, timedelta
 
 from django.conf import settings
 
-from google.appengine.ext import db
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
 from bs4 import BeautifulSoup
 
-
-from gempa.models import Gempa
+from gempa.models import Gempa, Event
 
 
 def str_to_datetime(datetime_str):
@@ -74,9 +71,6 @@ def update_latest_eq(group, source):
             # Add the new one
             if is_clear:
                 Gempa.bulk_add_new_records(eqs)
-
-            # reset the cache too
-            memcache.delete(settings.EQ_CACHE_KEY)
     return
 
 
@@ -100,34 +94,43 @@ def check_latest_sms_alert():
         print e
 
     if latest_event_id is not None:
+
+        # If there's no stored event that has event_id newer, then its new event. store.
+        newer_events = Event.query(Event.event_id >= latest_event_id)
+
+        # If not newest event, return. Else, continue...
+        if newer_events.get() is not None:
+            return
+
         sms_body_url = settings.SMS_ALERT_DETAIL_URL % latest_event_id
+        email_body_url = settings.EMAIL_ALERT_DETAIL_URL % latest_event_id
+
+        sms_body = None
+        email_body = None
 
         try:
             result = urllib2.urlopen(sms_body_url)
             body = re.search(">(Info Gempa.*::BMKG)<", result.read())
-            print body.group(1)
-
-            if body:
-                try:
-                    headers = {'Content-Type': 'application/json', 'Access-Token': settings.PB_ACCESS_TOKEN}
-                    payload = {
-                        "title": "Informasi Gempa",
-                        "body": body.group(1),
-                        "type": "note",
-                        "channel_tag": settings.PB_GEMPA_CHANNEL_TAG
-                    }
-                    result = urlfetch.fetch(
-                        url=settings.PB_PUSH_URL,
-                        payload=json.dumps(payload),
-                        method=urlfetch.POST,
-                        headers=headers,
-                        validate_certificate=True)
-
-                    print result.status_code
-                    print result.content
-
-                except urlfetch.Error as e:
-                    print e
+            sms_body = body.group(1)
+            print sms_body
 
         except Exception as e:
             print e
+
+        try:
+            result = urllib2.urlopen(email_body_url)
+            soup = BeautifulSoup(result.read(), 'html.parser')
+            email_body = soup.find('pre').text
+            print email_body
+
+        except Exception as e:
+            print e
+
+        # Store event
+        if sms_body and email_body:
+            print 'Storing new event: %s' % latest_event_id
+
+            event = Event(event_id=latest_event_id,
+                          sms_body=sms_body, email_body=email_body)
+            event.put()
+            event.broadcast_to_pushbullet()

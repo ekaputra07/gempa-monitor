@@ -54,13 +54,9 @@ def get_earthquakes(request):
             'region': quake_obj.region,
         }
 
-    cached_eqs = memcache.get(settings.EQ_CACHE_KEY)
-    if cached_eqs:
-        eqs = cached_eqs
-    else:
-        eqs = Gempa.get_latest_quakes()
-        eqs = map(_mapper, eqs)
-        memcache.set(settings.EQ_CACHE_KEY, eqs)
+
+    eqs = Gempa.get_latest_quakes()
+    eqs = map(_mapper, eqs)
 
     return HttpResponse(simplejson.dumps(eqs),
                         content_type='application/json; charset=utf-8')

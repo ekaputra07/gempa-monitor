@@ -53,6 +53,7 @@ EQ_LATEST_SOURCE = ('LATEST', 'http://inatews.bmkg.go.id/rss/csveqslastest.txt',
 EQ_LATEST60_SOURCE = ('LATEST60', 'http://inatews.bmkg.go.id/rss/csvlast60event.txt',)
 SMS_ALERT_LIST_URL = 'http://inatews.bmkg.go.id/new/diseminasi_sms.php'
 SMS_ALERT_DETAIL_URL = 'http://inatews.bmkg.go.id/new/detail_sms.php?eventid=%s'
+EMAIL_ALERT_DETAIL_URL = 'http://inatews.bmkg.go.id/new/detail_email.php?eventid=%s'
 
 PB_GEMPA_CHANNEL_TAG = 'gempa'
 PB_ACCESS_TOKEN = '<PUSH BULLET ACCESS TOKEN>'
